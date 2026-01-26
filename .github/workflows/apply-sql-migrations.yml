@@ -63,12 +63,12 @@ jobs:
           echo "Applying SQL migrations..."
 
           # Read changed files and apply each one
-          while IFS= read -r sql_file; do
+          echo "${{ steps.changed-files.outputs.files }}" | while IFS= read -r sql_file; do
             if [ -n "$sql_file" ]; then
               echo "Applying: $sql_file"
               psql -v ON_ERROR_STOP=1 -f "$sql_file"
               echo "Successfully applied: $sql_file"
             fi
-          done <<< "${{ steps.changed-files.outputs.files }}"
+          done
 
           echo "All SQL migrations applied successfully!"
