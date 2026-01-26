@@ -52,6 +52,8 @@ jobs:
           PGDATABASE: ${{ secrets.DB_NAME }}
           PGUSER: ${{ secrets.DB_USER }}
           PGPASSWORD: ${{ secrets.DB_PASSWORD }}
+          PGSSLMODE: require
+          PGCHANNELBINDING: require
         run: |
           echo "Applying SQL migrations..."
 
