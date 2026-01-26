@@ -10,10 +10,4 @@ INSERT INTO State (state_code, state_name, country_code) VALUES
 ('gha', 'ghazni', 'af'),
 ('gho', 'ghōr', 'af'),
 ('hel', 'helmand', 'af'),
-('her', 'herat', 'af'),
-('jow', 'jowzjan', 'af'),
-('kab', 'kabul', 'af'),
-('kan', 'kandahar', 'af'),
-('kap', 'kapisa', 'af'),
-('kho', 'khost', 'af'),
-('knr', 'kunar', 'af');
+('her', 'herat', 'af');
