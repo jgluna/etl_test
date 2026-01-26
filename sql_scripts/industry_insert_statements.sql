@@ -38,3 +38,4 @@ INSERT INTO Agriculture (SIC_Code, Description) VALUES
 ('3110', 'Marine fishing'),
 ('3120', 'Freshwater fishing'),
 ('3210', 'Marine aquaculture');
+
