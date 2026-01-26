@@ -1,0 +1,69 @@
+name: Apply SQL Migrations
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  apply-migrations:
+    # Only run if the PR was merged (not just closed)
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    container: postgres:16-alpine
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history to compare commits
+
+      - name: Get changed SQL files
+        id: changed-files
+        run: |
+          # Get the merge commit and its parent
+          MERGE_BASE=$(git rev-parse HEAD^1)
+
+          # Get list of added or modified SQL files in sql_scripts directory
+          CHANGED_SQL_FILES=$(git diff --name-only --diff-filter=AM $MERGE_BASE HEAD -- 'sql_scripts/*.sql' | sort)
+
+          if [ -z "$CHANGED_SQL_FILES" ]; then
+            echo "No SQL files changed in this merge"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changed SQL files:"
+            echo "$CHANGED_SQL_FILES"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            # Store as multiline output
+            {
+              echo "files<<EOF"
+              echo "$CHANGED_SQL_FILES"
+              echo "EOF"
+            } >> $GITHUB_OUTPUT
+          fi
+
+      - name: Apply SQL files to database
+        if: steps.changed-files.outputs.has_changes == 'true'
+        env:
+          PGHOST: ${{ secrets.DB_HOST }}
+          PGPORT: ${{ secrets.DB_PORT }}
+          PGDATABASE: ${{ secrets.DB_NAME }}
+          PGUSER: ${{ secrets.DB_USER }}
+          PGPASSWORD: ${{ secrets.DB_PASSWORD }}
+          PGSSLMODE: require
+          PGCHANNELBINDING: require
+        run: |
+          echo "Applying SQL migrations..."
+
+          # Read changed files and apply each one
+          while IFS= read -r sql_file; do
+            if [ -n "$sql_file" ]; then
+              echo "Applying: $sql_file"
+              psql -v ON_ERROR_STOP=1 -f "$sql_file"
+              echo "Successfully applied: $sql_file"
+            fi
+          done <<< "${{ steps.changed-files.outputs.files }}"
+
+          echo "All SQL migrations applied successfully!"
