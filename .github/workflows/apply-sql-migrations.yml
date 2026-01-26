@@ -15,6 +15,11 @@ jobs:
     container: postgres:16-alpine
 
     steps:
+      - name: Install git
+        run: |
+          apk add --no-cache git
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
