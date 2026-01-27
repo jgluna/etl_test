@@ -1,0 +1,16 @@
+INSERT INTO yearly_data (Year, Number) VALUES ('2012-12-31', 57.70);
+INSERT INTO yearly_data (Year, Number) VALUES ('2011-12-31', 55.70);
+INSERT INTO yearly_data (Year, Number) VALUES ('2010-12-31', 16.00);
+INSERT INTO yearly_data (Year, Number) VALUES ('2009-12-31', 3.10);
+INSERT INTO yearly_data (Year, Number) VALUES ('2008-12-31', 2.90);
+INSERT INTO yearly_data (Year, Number) VALUES ('2007-12-31', 7.00);
+INSERT INTO yearly_data (Year, Number) VALUES ('2006-12-31', 15.20);
+INSERT INTO yearly_data (Year, Number) VALUES ('2005-12-31', 29.80);
+INSERT INTO yearly_data (Year, Number) VALUES ('2004-12-31', 40.40);
+INSERT INTO yearly_data (Year, Number) VALUES ('2003-12-31', 63.70);
+INSERT INTO yearly_data (Year, Number) VALUES ('2002-12-31', 104.00);
+INSERT INTO yearly_data (Year, Number) VALUES ('2001-12-31', 111.00);
+INSERT INTO yearly_data (Year, Number) VALUES ('2000-12-31', 119.60);
+INSERT INTO yearly_data (Year, Number) VALUES ('1999-12-31', 93.30);
+INSERT INTO yearly_data (Year, Number) VALUES ('1998-12-31', 64.30);
+INSERT INTO yearly_data (Year, Number) VALUES ('1997-12-31', 21.00);
