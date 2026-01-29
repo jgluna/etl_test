@@ -1,0 +1,13 @@
+INSERT INTO agricultural_activities (SIC_Code, Description) VALUES
+('1110', 'Growing of cereals (except rice), leguminous crops and oil seeds'),
+('1120', 'Growing of rice'),
+('1130', 'Growing of vegetables and melons, roots and tubers'),
+('1140', 'Growing of sugar cane'),
+('1150', 'Growing of tobacco'),
+('1160', 'Growing of fibre crops'),
+('1190', 'Growing of other non-perennial crops'),
+('1210', 'Growing of grapes'),
+('1220', 'Growing of tropical and subtropical fruits'),
+('1230', 'Growing of citrus fruits'),
+('1240', 'Growing of pome fruits and stone fruits'),
+('1250', 'Growing of other tree and bush fruits and nuts');
